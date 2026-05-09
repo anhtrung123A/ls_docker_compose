@@ -76,7 +76,8 @@ services:
       - SMTP_PORT=1025
       - SMTP_FROM_EMAIL=noreply@linguasync.com
       - SMTP_FROM_NAME=noreply
-    command: tail -f /dev/null
+      - LOG_LEVEL=INFO
+    command: sh -c "python scripts/register_cron.py && cron -f"
     depends_on:
       - db
       - mailpit    
