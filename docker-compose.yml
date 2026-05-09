@@ -91,10 +91,13 @@ services:
       - SMTP_FROM_EMAIL=noreply@linguasync.com
       - SMTP_FROM_NAME=noreply
       - LOG_LEVEL=INFO
+      - MINIO_ROOT_USER=${MINIO_ROOT_USER}
+      - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD}
     command: sh -c "python scripts/register_cron.py && cron -f"
     depends_on:
       - db
-      - mailpit    
+      - mailpit
+      - minio   
 
 volumes:
   mysql_data:
